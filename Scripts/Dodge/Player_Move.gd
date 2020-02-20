@@ -49,8 +49,6 @@ func _physics_process(delta):
 	# applys the frame latency variable
 	movement = apply_latency(movement)
 	
-	print(standstill_startup_frame_counter)
-	
 	# Apply movement
 	move_and_collide(movement)
 
