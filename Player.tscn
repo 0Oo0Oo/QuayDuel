@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Dodge/Player_Move.gd" type="Script" id=1]
 [ext_resource path="res://assets/tmp_assets/amywack.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 50.1882
 
 [node name="Player" type="KinematicBody2D"]
@@ -14,4 +14,4 @@ scale = Vector2( 0.247655, 0.247655 )
 texture = ExtResource( 2 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
