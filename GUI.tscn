@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/tmp_assets/progress_bar/energy_bar_fill.png" type="Texture" id=7]
 [ext_resource path="res://assets/tmp_assets/scroll.png" type="Texture" id=8]
 
-[node name="GUI" type="Control"]
+[node name="Cast" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 56.0
@@ -58,4 +58,6 @@ margin_left = -4.20471
 margin_right = 1075.8
 margin_bottom = 1920.0
 texture = ExtResource( 8 )
+[connection signal="increment_spell_counter" from="Player" to="MarginContainer/VBoxContainer/HBoxContainer/SpellsCast_Bar" method="_on_Player_increment_spell_counter"]
 [connection signal="ready" from="Player" to="MarginContainer/VBoxContainer/RuneCircle" method="_on_Player_ready"]
+[connection signal="cast" from="MarginContainer/VBoxContainer/RuneCircle" to="Player" method="_on_RuneCircle_cast"]

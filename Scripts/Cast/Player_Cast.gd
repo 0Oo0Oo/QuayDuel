@@ -2,7 +2,8 @@ extends Node
 
 # Declare member variables here. Examples:
 var runebook = {}
-var current_spells = []
+var current_spell = []
+signal increment_spell_counter
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,4 +21,9 @@ func add_rune(rune_name) -> void:
 		self.runebook[rune_name] += 1
 	else:
 		self.runebook[rune_name] = 1
-	
+
+func _on_RuneCircle_cast():
+	if len(self.current_spell) != 0:
+		emit_signal("increment_spell_counter")
+		print(current_spell)
+		self.current_spell = []
