@@ -17,31 +17,25 @@ var latency_list = []
 var movement: Vector2
 var time_till_max_speed = (accel * 60.0) / max_speed
 var setup_needed = true
-var none_dir: Vector2
 var drag_enabled = false
 var standstill_startup_frame_counter = 0
 
+func _ready():
+	for i in range(latency):
+		latency_list.append(Vector2.ZERO)
+	print("time till max speed ", time_till_max_speed, " seconds")
 
 # This function runs every frame
 func _physics_process(delta):
-	# runs once at the start of the program
-	if setup_needed:
-		setup()
-		setup_needed = false
-	
-	#standstill_startup_check()
-	
+
 	# gets the mouse position, and bases movement off of it
 	var new_position = get_global_mouse_position()
 	movement = new_position - position;
 	
 	# Checks if the player is clicking. If so, accelerate, if not decelerate.
 	# If the player is clicking, but the object is not moveing, also decelerate
-	if drag_enabled:
-		if movement != none_dir:
-			accelerate(accel)
-		else:
-			decelerate(decel)
+	if drag_enabled and movement != Vector2.ZERO:
+		accelerate(accel)
 	else:
 		decelerate(decel)
 	
@@ -51,10 +45,6 @@ func _physics_process(delta):
 	# normalizes (sets length to 1) the movement vector and applys the velocity to it
 	if movement.length() > (velocity * delta):
 		movement = velocity * delta * movement.normalized()
-	
-	#standstill_startup()
-	
-	#apply_min_turning_radius(delta)
 	
 	# applys the frame latency variable
 	movement = apply_latency(movement)
@@ -79,36 +69,31 @@ func decelerate(ammount):
 
 
 # returns a boolean of wether the player is turning faster than the min_turning_radius
-func min_turning_radius_check():
+func is_min_turning_radius():
 	var mouse_position = get_global_mouse_position()
 	var line_player_mouse = (mouse_position - position).normalized()
 	print(line_player_mouse.dot(movement))
-	if line_player_mouse.dot(movement) > min_turn_radius:
-    	return false
-	else:
-		return true
+	return not line_player_mouse.dot(movement) > min_turn_radius
 
 
 func apply_min_turning_radius(delta):
-	if min_turning_radius_check():
+	if is_min_turning_radius():
 		var angle = atan2(movement.y, movement.x)
-		angle += 3.14159/4
+		angle += PI/4
 		movement.x = cos(angle)
 		movement.y = sin(angle)
 		movement = velocity * delta * movement.normalized()
 
 
 func standstill_startup_check():
-	if movement == none_dir and drag_enabled and standstill_startup_frame_counter == 0:
+	if movement == Vector2.ZERO and drag_enabled and standstill_startup_frame_counter == 0:
 		standstill_startup_frame_counter = standstill_startup_latency
 
 
 func standstill_startup():
 	if standstill_startup_frame_counter > 0:
-		movement = none_dir
+		movement = Vector2.ZERO
 		standstill_startup_frame_counter -= 1
-	
-	
 
 
 # avoids the player moveing around slowly when not clicking
@@ -123,21 +108,6 @@ func apply_latency(movement):
 	if len(latency_list) > latency:
 		latency_list.remove(0)
 	return latency_list[0]
-
-
-# One time startup function to initialize the latency_list variable that 
-# tracks the movement of the player over the last so many frames.
-func setup_latency_list():
-	var empty_vector: Vector2
-	for i in range(latency):
-		latency_list.append(empty_vector)
-
-
-
-# One time startup function. Prints time_till_max_speed in seconds, and runs setup_latency_list() function
-func setup():
-	setup_latency_list()
-	print("time till max speed ", time_till_max_speed, " seconds")
 
 
 # Gets click input of the mouse and changes the drag_enabled to true or false
