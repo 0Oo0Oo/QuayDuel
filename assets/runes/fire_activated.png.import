@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/earth_activated.png-aa3fd7e9decdf55f6bad44b6a770e630.stex"
+path="res://.import/fire_activated.png-2950e87e7d145f78d3ec9e5bb05759a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/earth_activated.png"
-dest_files=[ "res://.import/earth_activated.png-aa3fd7e9decdf55f6bad44b6a770e630.stex" ]
+source_file="res://assets/runes/fire_activated.png"
+dest_files=[ "res://.import/fire_activated.png-2950e87e7d145f78d3ec9e5bb05759a6.stex" ]
 
 [params]
 

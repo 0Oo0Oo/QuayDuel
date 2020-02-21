@@ -1,42 +1,27 @@
 extends Node
 
-var current_spell = []
-signal increment
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+signal cast
+var rune_path = "res://assets/runes/"
+var icon_script_path = "res://Scripts/Cast/RuneHitBox.gd"
 
 func _on_Player_ready():
 	var pivot = Vector2(1080/2, 1920/2) # center of the screen 
 	var player = get_node("../../../Player") # "../" means up a dir
-	var rotation = 360.0/len(player.runebook)
+	var rotation_increment = 360.0/len(player.runebook)
 	var currRot = 90
 	var circle_size = 300
 	for rune in player.runebook:
 		var rotation2D = Vector2(circle_size,circle_size).rotated(deg2rad(currRot))
 		var icon = Sprite.new()
 		icon.name = rune
-		icon.texture = load("res://assets/runes/square/" + str(rune) + "1.png")
-		#var hitbox = CollisionShape2D.new()
-		icon.set_script(load("res://Scripts/Cast/RuneHitBox.gd"))
-		#icon.add_child(hitbox)
-		#hitbox.scale = Vector2(100,100)
-		#hitbox.global_position = pivot + rotation2D
+		icon.texture = load(rune_path + str(rune) + ".png")
+		icon.set_script(load(icon_script_path))
+		icon.set_name(str(rune))
 		icon.global_position = pivot + rotation2D
-		#icon.add_child(hitbox)
-		currRot += rotation
-		icon.connect("release", self, "release")
+		currRot += rotation_increment
+		icon.connect("release", self, "on_icon_release")
 		self.add_child(icon)
 
-func release():
-	if len(current_spell) != 0:
-		print(current_spell)
-		emit_signal("increment")
-
-	
+func on_icon_release():
+	if len(get_node("../../../Player").current_spell) != 0:
+		emit_signal("cast")

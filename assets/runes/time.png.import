@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knowledge2.png-a33b969c68c5aefbaf4c01a29e17f784.stex"
+path="res://.import/time.png-81cc508129f2515b6b36b0ac2dcc2f7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/knowledge2.png"
-dest_files=[ "res://.import/knowledge2.png-a33b969c68c5aefbaf4c01a29e17f784.stex" ]
+source_file="res://assets/runes/time.png"
+dest_files=[ "res://.import/time.png-81cc508129f2515b6b36b0ac2dcc2f7d.stex" ]
 
 [params]
 

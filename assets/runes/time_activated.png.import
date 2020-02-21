@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chaos1.png-983a7bda383c23d26d5f83a26bc2d77f.stex"
+path="res://.import/time_activated.png-0717def0067ca24a265430151485894b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/chaos1.png"
-dest_files=[ "res://.import/chaos1.png-983a7bda383c23d26d5f83a26bc2d77f.stex" ]
+source_file="res://assets/runes/time_activated.png"
+dest_files=[ "res://.import/time_activated.png-0717def0067ca24a265430151485894b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chaos_activated.png-83dfbf6bf818eb745463ac1724ea0925.stex"
+path="res://.import/death_activated.png-ff6d92371fe7f679bcddc75df8977a8b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/chaos_activated.png"
-dest_files=[ "res://.import/chaos_activated.png-83dfbf6bf818eb745463ac1724ea0925.stex" ]
+source_file="res://assets/runes/death_activated.png"
+dest_files=[ "res://.import/death_activated.png-ff6d92371fe7f679bcddc75df8977a8b.stex" ]
 
 [params]
 

@@ -1,12 +1,6 @@
 extends TextureProgress
 
-func _ready():
-	get_node("../../../VBoxContainer/RuneCircle").connect("increment", self, "increment")
-
-func increment():
+func _on_Player_increment_spell_counter():
 	self.value += 1
 	if value == self.max_value:
 		print("Max spells reached, stop!")
-		# here is where we will switch scenes
-
-

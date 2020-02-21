@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire2.png-a97bcddbfea995cbe325f096d9d8f059.stex"
+path="res://.import/water_activated.png-b893f726e3a375ebdacd36fbaca34ccf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/fire2.png"
-dest_files=[ "res://.import/fire2.png-a97bcddbfea995cbe325f096d9d8f059.stex" ]
+source_file="res://assets/runes/water_activated.png"
+dest_files=[ "res://.import/water_activated.png-b893f726e3a375ebdacd36fbaca34ccf.stex" ]
 
 [params]
 

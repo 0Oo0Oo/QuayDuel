@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knowledge_activated.png-c5ca3ac6762b917c49d14bb758c58081.stex"
+path="res://.import/water.png-0302b8f0a67229f3aff90878120dab71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/knowledge_activated.png"
-dest_files=[ "res://.import/knowledge_activated.png-c5ca3ac6762b917c49d14bb758c58081.stex" ]
+source_file="res://assets/runes/water.png"
+dest_files=[ "res://.import/water.png-0302b8f0a67229f3aff90878120dab71.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spirit_activated.png-ad61b9c516246af532b772a1fab2248a.stex"
+path="res://.import/dark_activated.png-5f80d7c82756fc58341a6bd01524ebe0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/runes/square/spirit_activated.png"
-dest_files=[ "res://.import/spirit_activated.png-ad61b9c516246af532b772a1fab2248a.stex" ]
+source_file="res://assets/runes/dark_activated.png"
+dest_files=[ "res://.import/dark_activated.png-5f80d7c82756fc58341a6bd01524ebe0.stex" ]
 
 [params]
 
