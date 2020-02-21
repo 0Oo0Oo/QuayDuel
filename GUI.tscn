@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/tmp_assets/progress_bar/lifebar_bg.png" type="Texture" id=3]
 [ext_resource path="res://assets/tmp_assets/progress_bar/lifebar_fill.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Cast/SpellsCast_Bar.gd" type="Script" id=5]
-[ext_resource path="res://assets/tmp_assets/progress_bar/energy_bar_bg.png" type="Texture" id=6]
-[ext_resource path="res://assets/tmp_assets/progress_bar/energy_bar_fill.png" type="Texture" id=7]
+[ext_resource path="res://assets/progress_bar/Health_Frame_SD.png" type="Texture" id=6]
+[ext_resource path="res://assets/progress_bar/Health_Fill_SD.png" type="Texture" id=7]
 [ext_resource path="res://assets/tmp_assets/scroll.png" type="Texture" id=8]
 
 [node name="Cast" type="Control"]
