@@ -1,6 +1,7 @@
 extends Sprite
 
-var rune_path = "res://assets/runes/"
+var activated_rune_path = "res://assets/runes/runes_activated_100/"
+var rune_path = "res://assets/runes/runes_100/"
 var size = 75
 var activated = false
 signal release
@@ -19,7 +20,7 @@ func _input(event):
 		self.get_global_mouse_position().y > (position.y - size)
 		):
 			
-			self.texture = load(rune_path + name + "_activated.png")
+			self.texture = load(activated_rune_path + name + "_activated.png")
 			player.current_spell.append(name) # add rune to current_spell
 			activated = true
 

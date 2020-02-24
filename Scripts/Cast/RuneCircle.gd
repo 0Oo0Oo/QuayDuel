@@ -1,7 +1,7 @@
 extends Node
 
 signal cast
-var rune_path = "res://assets/runes/"
+var rune_path = "res://assets/runes/runes_100/"
 var icon_script_path = "res://Scripts/Cast/RuneHitBox.gd"
 
 func _on_Player_ready():
