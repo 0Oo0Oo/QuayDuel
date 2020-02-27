@@ -116,3 +116,6 @@ func _input(event):
 			drag_enabled = false
 		else:
 			drag_enabled = true
+	if event is InputEventKey:
+		if event.scancode == KEY_S:
+			print("Spell casted.")
