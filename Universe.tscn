@@ -107,4 +107,4 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Spells/Fireball/Area2D"]
 shape = SubResource( 4 )
-[connection signal="body_entered" from="Spells/Fireball/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Spells/Fireball/Area2D" to="Spells/Fireball" method="_on_Area2D_body_entered"]
