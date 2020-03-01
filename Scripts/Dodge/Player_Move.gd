@@ -1,6 +1,8 @@
 # Part of godot engine
 extends KinematicBody2D
 
+signal give_position
+
 # Variable that can be changed
 var accel = 6 				# How fast the player accelerates
 var decel = 7				# How fast the player decelerates
@@ -22,9 +24,9 @@ var standstill_startup_frame_counter = 0
 var health = 100
 
 func _ready():
-	cast_spell("fireball")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
+	
 	#print("time till max speed ", time_till_max_speed, " seconds")
 
 # This function runs every frame
@@ -111,27 +113,11 @@ func apply_latency(movement):
 
 
 func cast_spell(type):
-	var spell_path = "res://assets/spells/"
-	var spell_script_path = "res://Scripts/Dodge/spell_script.gd"
-	
-	var spell_base = KinematicBody2D.new()
-	var spell_collider = CollisionShape2D.new()
-	var spell_image = Sprite.new()
-	
-	spell_base.name = type
-	spell_base.set_script(load(spell_script_path))
-	spell_base.set_name(type)
-	spell_base.global_position = self.position
-	
-	spell_collider.shape = CircleShape2D
-	
-	spell_image.texture = load(spell_path + "temp_fireball" + ".png")
-	
-	spell_base.add_child(spell_collider)
-	spell_base.add_child(spell_image)
-	#add_child_below_node(get_node("Res://Universe/Universe/Spells"), spell_base, false)
-	
-	#print(spell_base.get_parent().name)
+	var spell = load("res://" + type + ".tscn").instance()
+	spell.position = position
+	spell.connect("fireball_collision_with_wall", self, "_on_Fireball_fireball_collision_with_wall")
+	self.connect("give_position", spell, "_on_Player2_give_position")
+	self.get_parent().call_deferred("add_child", spell)
 
 
 
@@ -157,4 +143,7 @@ func _input(event):
 		else:			drag_enabled = true
 	if event is InputEventKey:
 		if event.scancode == KEY_S:
-			print("Spell casted.")
+			cast_spell("Fireball")
+
+func _on_Fireball_fireball_collision_with_wall() -> void:
+	emit_signal("give_position", position)
