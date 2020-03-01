@@ -154,6 +154,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if drag_enabled:
 			drag_enabled = false
-		else:
-			drag_enabled = true
-			
+		else:			drag_enabled = true
+	if event is InputEventKey:
+		if event.scancode == KEY_S:
+			print("Spell casted.")
