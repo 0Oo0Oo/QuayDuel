@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="timeandmotion"
 run/main_scene="res://Universe.tscn"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [display]
 
 window/size/width=1080
