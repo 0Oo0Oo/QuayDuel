@@ -8,10 +8,10 @@ var max_speed = 365			# Max speed the player can move
 var min_speed = 0			# Minimum speed the player can move
 var latency = 11			# How many frames of input latency. (effects movenemt and turning)
 var min_turn_radius = 0.4	# The minimum turning radius (0 - 0.9. 0 = 180 degrees, 0.9 = crazy small angle)
-var twitch_frequency = 100		# how often the AI chooses a new place to move to higher means less twitchy
+var twitch_frequency = 10		# how often the AI chooses a new place to move to higher means less twitchy
 var standstill_startup_latency = 200
-var min_distance_to_walls = 100 	# how close the AI will go to a wall
-var stride_length = 1000 # how far the fake "clicks" occur from the enemy
+var min_distance_to_walls = 200 	# how close the AI will go to a wall
+var stride_length = 400 # how far the fake "clicks" occur from the enemy
 
 # Misalanous variables
 var velocity = 0
@@ -25,6 +25,7 @@ var rand_x: float
 var rand_y: float
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
+var health = 100
 
 
 func _ready():
@@ -133,3 +134,9 @@ func apply_latency(movement):
 	if len(latency_list) > latency:
 		latency_list.remove(0)
 	return latency_list[0]
+	
+# called when the spell hits this object
+func damaged(ammount):
+	health -= ammount
+	if health <= 0:
+		print("Bot has died")

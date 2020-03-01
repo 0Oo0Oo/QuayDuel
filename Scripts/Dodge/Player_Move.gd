@@ -19,11 +19,13 @@ var time_till_max_speed = (accel * 60.0) / max_speed
 var setup_needed = true
 var drag_enabled = false
 var standstill_startup_frame_counter = 0
+var health = 100
 
 func _ready():
+	cast_spell("fireball")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
-	print("time till max speed ", time_till_max_speed, " seconds")
+	#print("time till max speed ", time_till_max_speed, " seconds")
 
 # This function runs every frame
 func _physics_process(delta):
@@ -108,6 +110,44 @@ func apply_latency(movement):
 	return latency_list[0]
 
 
+func cast_spell(type):
+	var spell_path = "res://assets/spells/"
+	var spell_script_path = "res://Scripts/Dodge/spell_script.gd"
+	
+	var spell_base = KinematicBody2D.new()
+	var spell_collider = CollisionShape2D.new()
+	var spell_image = Sprite.new()
+	
+	spell_base.name = type
+	spell_base.set_script(load(spell_script_path))
+	spell_base.set_name(type)
+	spell_base.global_position = self.position
+	
+	spell_collider.shape = CircleShape2D
+	
+	spell_image.texture = load(spell_path + "temp_fireball" + ".png")
+	
+	spell_base.add_child(spell_collider)
+	spell_base.add_child(spell_image)
+	#add_child_below_node(get_node("Res://Universe/Universe/Spells"), spell_base, false)
+	
+	#print(spell_base.get_parent().name)
+
+
+
+# Returns a vector2 of the movement needed to aim from the player to the given position
+func aim(aim_to_pos):
+	var m = position - aim_to_pos
+	m = m.normalized()
+	return m
+
+
+func damaged(ammount):
+	health -= ammount
+	if health <= 0:
+		print("Player has died")
+
+
 # Gets click input of the mouse and changes the drag_enabled to true or false
 # depending on whether the mouse is clicked or not.
 func _input(event):
@@ -116,3 +156,4 @@ func _input(event):
 			drag_enabled = false
 		else:
 			drag_enabled = true
+			
