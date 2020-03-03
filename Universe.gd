@@ -8,6 +8,6 @@ func _ready():
 
 
 func _process(delta):
-	timer += 1
+	timer += delta
 
 

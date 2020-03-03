@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Dodge/spell_script.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Dodge/fireball.gd" type="Script" id=1]
 [ext_resource path="res://assets/spells/temp_fireball.png" type="Texture" id=2]
 [ext_resource path="res://Area2D.gd" type="Script" id=3]
 

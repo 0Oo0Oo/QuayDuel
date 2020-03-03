@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Universe.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Dodge/Player_Move.gd" type="Script" id=2]
 [ext_resource path="res://assets/tmp_assets/amywack.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Dodge/Enemy_Move.gd" type="Script" id=4]
 [ext_resource path="res://assets/tmp_assets/bad_face.png" type="Texture" id=5]
+[ext_resource path="res://Time Slice.gd" type="Script" id=6]
+[ext_resource path="res://timeslice.png" type="Texture" id=7]
+[ext_resource path="res://Timer.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.1882
@@ -15,11 +18,13 @@ extents = Vector2( 13.8002, 1062.44 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 887.017, 10 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 179.377, 1168.02 )
+
 [node name="Universe" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Player2" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 614.483, 317.677 )
 collision_layer = 2
 collision_mask = 3
@@ -82,3 +87,21 @@ position = Vector2( 564.143, 1929.71 )
 shape = SubResource( 3 )
 
 [node name="Spells" type="Node" parent="."]
+
+[node name="Time Slice" type="Area2D" parent="Spells"]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spells/Time Slice"]
+position = Vector2( 560.049, 1054.31 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Spells/Time Slice"]
+position = Vector2( 560.91, 1061.61 )
+scale = Vector2( 4.0854, 20.041 )
+texture = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Spells/Time Slice"]
+process_mode = 0
+wait_time = 5.0
+script = ExtResource( 8 )
+[connection signal="timeout" from="Spells/Time Slice/Timer" to="Spells/Time Slice" method="_on_Timer_timeout"]

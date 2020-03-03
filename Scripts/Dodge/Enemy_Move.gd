@@ -42,7 +42,7 @@ func _physics_process(delta):
 		rand_x = rand_range(self.position.x, self.position.x + stride_length)
 	elif position.x > window_width - min_distance_to_walls:
 		rand_x = rand_range(self.position.x - stride_length, self.position.x)
-	elif get_parent().timer % twitch_frequency == 0: # if its not near a wall will only choose a 
+	elif int(get_parent().timer) % twitch_frequency == 0: # if its not near a wall will only choose a 
 	# new position based on twitch fequency
 		rand_x = rand_range(self.position.x - stride_length, self.position.x + stride_length)
 	
@@ -51,7 +51,7 @@ func _physics_process(delta):
 		rand_y = rand_range(self.position.y, self.position.y + stride_length)
 	elif position.y > window_height - min_distance_to_walls:
 		rand_y = rand_range(self.position.y - stride_length, self.position.y)
-	elif get_parent().timer % twitch_frequency == 0: # if its not near a wall will only choose a 
+	elif int(get_parent().timer) % twitch_frequency == 0: # if its not near a wall will only choose a 
 	# new position based on twitch fequency
 		rand_y = rand_range(self.position.y - stride_length, self.position.y + stride_length)
 
