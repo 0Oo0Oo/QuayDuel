@@ -1,7 +1,7 @@
 # Part of godot engine
 extends KinematicBody2D
 
-signal give_position
+signal give_player_info
 
 # Variable that can be changed
 var accel = 6 				# How fast the player accelerates
@@ -22,8 +22,11 @@ var setup_needed = true
 var drag_enabled = false
 var standstill_startup_frame_counter = 0
 var health = 100
+var to_cast_on_first_movement = null
 
 func _ready():
+	# temp line of code to cast fireball spell VVVVV
+	cast_spell("Fireball")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
 	
@@ -52,6 +55,9 @@ func _physics_process(delta):
 	
 	# applys the frame latency variable
 	movement = apply_latency(movement)
+	
+	if to_cast_on_first_movement != null:
+		cast_on_first_movement()
 	
 	# Apply movement
 	move_and_collide(movement)
@@ -116,9 +122,18 @@ func cast_spell(type):
 	var spell = load("res://" + type + ".tscn").instance()
 	spell.position = position
 	spell.connect("fireball_collision_with_wall", self, "_on_Fireball_fireball_collision_with_wall")
-	self.connect("give_position", spell, "_on_Player2_give_position")
-	self.get_parent().call_deferred("add_child", spell)
+	self.connect("give_player_info", spell, "_on_Player2_give_player_info")
+	
+	if type == "Fireball":
+		to_cast_on_first_movement = spell
+	else:
+		self.get_parent().call_deferred("add_child", spell)
+	
 
+func cast_on_first_movement():
+	if movement != Vector2.ZERO:
+		self.get_parent().call_deferred("add_child", to_cast_on_first_movement)
+		to_cast_on_first_movement = null
 
 
 # Returns a vector2 of the movement needed to aim from the player to the given position
@@ -140,10 +155,9 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if drag_enabled:
 			drag_enabled = false
-		else:			drag_enabled = true
-	if event is InputEventKey:
-		if event.scancode == KEY_S:
-			cast_spell("Fireball")
+		else:			
+			drag_enabled = true
+			
 
 func _on_Fireball_fireball_collision_with_wall() -> void:
-	emit_signal("give_position", position)
+	emit_signal("give_player_info", position, movement)
