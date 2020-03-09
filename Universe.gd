@@ -9,5 +9,3 @@ func _ready():
 
 func _process(delta):
 	timer += delta
-
-

@@ -26,6 +26,7 @@ var to_cast_on_first_movement = null
 
 func _ready():
 	# temp line of code to cast fireball spell VVVVV
+	cast_spell("TimeSlice")
 	cast_spell("Fireball")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
@@ -119,13 +120,12 @@ func apply_latency(movement):
 
 
 func cast_spell(type):
-	var spell = load("res://" + type + ".tscn").instance()
-	spell.position = position
-	spell.connect("fireball_collision_with_wall", self, "_on_Fireball_fireball_collision_with_wall")
-	self.connect("give_player_info", spell, "_on_Player2_give_player_info")
+	var spell = load("res://Spells/" + type + "/" + type + ".tscn").instance()
+	spell.init(self)
 	
 	if type == "Fireball":
 		to_cast_on_first_movement = spell
+		spell.position = self.position
 	else:
 		self.get_parent().call_deferred("add_child", spell)
 	
@@ -157,7 +157,3 @@ func _input(event):
 			drag_enabled = false
 		else:			
 			drag_enabled = true
-			
-
-func _on_Fireball_fireball_collision_with_wall() -> void:
-	emit_signal("give_player_info", position, movement)

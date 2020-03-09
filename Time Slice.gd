@@ -1,5 +1,7 @@
-extends Area2D
+extends Node
 
+
+var player
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -10,13 +12,14 @@ extends Area2D
 func _ready():
 	pass # Replace with function body.
 
-
+func init(player):
+	self.player = player
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 
 func _on_Timer_timeout():
-	print("function is called")
-	pass # Replace with function body.
-	
+	var timeslice = load("res://Spells/TimeSlice/TimeSlice_Activated.tscn").instance()
+	self.add_child(timeslice)
