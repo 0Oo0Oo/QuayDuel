@@ -1,4 +1,3 @@
-# godot-movement
-Little movement prototyping in the Godot engine.
+# Quay-Duel
 
-Icon moves around a 2D plane with non-collidable falling blocks to motivate movement fluidity and responsiveness testing.
+Inital Demo of the combat and casting of Team Quays Upcoming title. Made using Godot
