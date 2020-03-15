@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Spells/IceSpikes/IceSpikes.gd" type="Script" id=1]
+
+[node name="IceSpikes" type="Node"]
+script = ExtResource( 1 )
+
+[node name="End_Spell_Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Create_New_Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="End_Spell_Timer" to="." method="_on_End_Spell_Timer_timeout"]
+[connection signal="timeout" from="Create_New_Timer" to="." method="_on_Create_New_Timer_timeout"]
