@@ -28,6 +28,7 @@ func _ready():
 	# temp line of code to cast fireball spell VVVVV
 	cast_spell("TimeSlice")
 	cast_spell("Fireball")
+	cast_spell("IceSpikes")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
 	
