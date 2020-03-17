@@ -11,7 +11,6 @@ func init(player):
 
 
 func _on_Create_New_Timer_timeout():
-	print("new spike")
 	var spike = load("res://Spells/IceSpikes/IceSpike.tscn").instance()
 	spike.position = player.position
 	self.add_child(spike)

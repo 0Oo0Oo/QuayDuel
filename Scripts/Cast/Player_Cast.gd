@@ -12,7 +12,6 @@ func _ready():
 	self.add_rune("water")
 	self.add_rune("air")
 	self.add_rune("knowledge")
-	self.add_rune("death")
 	self.add_rune("life")
 	self.add_rune("time")
 
@@ -25,5 +24,4 @@ func add_rune(rune_name) -> void:
 func _on_RuneCircle_cast():
 	if len(self.current_spell) != 0:
 		emit_signal("increment_spell_counter")
-		print(current_spell)
 		self.current_spell = []

@@ -1,10 +1,12 @@
 # Part of godot engine
 extends KinematicBody2D
 
+signal enemy_took_damage
+
 # Variable that can be changed
-var accel = 6 				# How fast the player accelerates
-var decel = 7				# How fast the player decelerates
-var max_speed = 365			# Max speed the player can move
+var accel = 15 				# How fast the player accelerates
+var decel = 30				# How fast the player decelerates
+var max_speed = 700			# Max speed the player can move
 var min_speed = 0			# Minimum speed the player can move
 var latency = 11			# How many frames of input latency. (effects movenemt and turning)
 var min_turn_radius = 0.4	# The minimum turning radius (0 - 0.9. 0 = 180 degrees, 0.9 = crazy small angle)
@@ -18,7 +20,6 @@ var velocity = 0
 var latency_list = []
 var movement: Vector2
 var time_till_max_speed = (accel * 60.0) / max_speed
-var setup_needed = true
 var standstill_startup_frame_counter = 0
 var new_position: Vector2
 var rand_x: float
@@ -136,7 +137,8 @@ func apply_latency(movement):
 	return latency_list[0]
 	
 # called when the spell hits this object
-func damaged(ammount):
-	health -= ammount
+func damaged(amount):
+	emit_signal("enemy_took_damage", amount)
+	health -= amount
 	if health <= 0:
 		print("Bot has died")

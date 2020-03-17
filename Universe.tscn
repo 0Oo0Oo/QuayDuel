@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Universe.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Dodge/Player_Move.gd" type="Script" id=2]
 [ext_resource path="res://assets/tmp_assets/amywack.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Dodge/Enemy_Move.gd" type="Script" id=4]
 [ext_resource path="res://assets/tmp_assets/bad_face.png" type="Texture" id=5]
+[ext_resource path="res://assets/progress_bar/Health_Frame_SD.png" type="Texture" id=6]
+[ext_resource path="res://assets/progress_bar/Health_Fill_SD.png" type="Texture" id=7]
+[ext_resource path="res://HealthBar.gd" type="Script" id=8]
+[ext_resource path="res://EnemyHealthBar.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.1882
@@ -46,7 +50,6 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 
 [node name="walls" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="walls"]
 position = Vector2( -16.1245, 919.444 )
@@ -81,3 +84,49 @@ position = Vector2( 564.143, 1929.71 )
 shape = SubResource( 3 )
 
 [node name="Spells" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="Hud" type="Node" parent="."]
+
+[node name="PlayerHealthBar" type="TextureProgress" parent="Hud"]
+margin_left = 4.94791
+margin_top = 0.637573
+margin_right = 252.948
+margin_bottom = 40.6376
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="EnemyHealthBar" type="TextureProgress" parent="Hud"]
+margin_left = 826.369
+margin_top = 4.10107
+margin_right = 1077.37
+margin_bottom = 50.1011
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
+script = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hud"]
+margin_left = 972.139
+margin_top = 79.3473
+margin_right = 1045.14
+margin_bottom = 101.347
+rect_scale = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 49.75, 9.5 )
+text = "BAD GUY"
+
+[node name="Label" type="Label" parent="Hud"]
+margin_left = 1.22775
+margin_top = 41.743
+margin_right = 11.2278
+margin_bottom = 55.743
+rect_scale = Vector2( 4, 4 )
+text = "U"
+[connection signal="took_damage" from="Player" to="Hud/PlayerHealthBar" method="_on_Player_took_damage"]
+[connection signal="enemy_took_damage" from="enemy" to="Hud/EnemyHealthBar" method="_on_enemy_enemy_took_damage"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

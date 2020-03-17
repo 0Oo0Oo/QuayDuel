@@ -5,7 +5,7 @@
 extends KinematicBody2D
 signal collision
 
-var velocity = 500
+var velocity = 800
 var damage = 10
 
 var movement = Vector2()

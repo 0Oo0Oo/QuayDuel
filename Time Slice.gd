@@ -22,4 +22,5 @@ func init(player):
 
 func _on_Timer_timeout():
 	var timeslice = load("res://Spells/TimeSlice/TimeSlice_Activated.tscn").instance()
+	timeslice.init(player)
 	self.add_child(timeslice)
