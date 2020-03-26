@@ -103,9 +103,9 @@ script = ExtResource( 8 )
 
 [node name="EnemyHealthBar" type="TextureProgress" parent="Hud"]
 margin_left = 826.369
-margin_top = 4.10107
+margin_top = 1.16473
 margin_right = 1077.37
-margin_bottom = 50.1011
+margin_bottom = 47.1648
 value = 100.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 7 )
