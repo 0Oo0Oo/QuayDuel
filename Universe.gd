@@ -8,6 +8,3 @@ func _ready():
 
 func _process(delta):
 	timer += delta
-
-func _on_Timer_timeout():
-	get_tree().change_scene("res://GUI.tscn")

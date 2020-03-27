@@ -14,4 +14,4 @@ func _ready():
 
 
 func _on_Fireball_collision(angle):
-	self.rotation = angle - deg2rad(45)
+	self.rotation = angle

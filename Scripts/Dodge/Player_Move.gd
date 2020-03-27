@@ -120,6 +120,7 @@ func apply_latency(movement):
 
 
 func cast_spell(type):
+	print(type)
 	var spell = load("res://Spells/" + type + "/" + type + ".tscn").instance()
 	spell.init(self)
 	
