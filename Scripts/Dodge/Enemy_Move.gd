@@ -142,3 +142,4 @@ func damaged(amount):
 	health -= amount
 	if health <= 0:
 		print("Bot has died")
+		queue_free()
