@@ -28,6 +28,7 @@ func _ready():
 	cast_spell("TimeSlice")
 	cast_spell("Fireball")
 	cast_spell("IceSpikes")
+	cast_spell("ClockWork_Armageddon")
 	for i in range(latency):
 		latency_list.append(Vector2.ZERO)
 	
