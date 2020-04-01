@@ -1,19 +1,37 @@
-extends Node2D
+extends Area2D
 
 var player
-var center_screen = Vector2()
+var damage = 20
+	# var for clock settings
+var tick_delay_counter=20               # if rotate(0.1*delta) -> normal clock speed (in radians)
+var speed = 0.615                                 # speed in degrees per delta, this is an hour hand config
+var tick_delay = 11           #delay for the arm to start moving again
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.init(player)
-	var node = load("res://Spells/ClockWork_Armageddon/ClockWork.tscn").instance()
-	node.position = center_screen
-	add_child(node)
+	pass 
 	
 func init(player):
 	self.player = player
-	#Initializes the center_screen vector so the arm spawns in the right spot
-	center_screen.x = get_viewport_rect().size.x/2
-	center_screen.y = get_viewport_rect().size.y/2
-	print(center_screen)
 	
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if tick_delay > tick_delay_counter :
+		rotate(0)
+		tick_delay_counter +=1
+		
+	else: # rotates arm at increasing speed until it hits the speed limit for the tick
+		rotate(deg2rad(speed))
+		
+func _on_ClockArm_body_entered(body):
+	body.damaged(damage)
+
+func _on_12Sec_timeout():
+	self.queue_free()
+	pass # Replace with function body.
+
+
+func _on_Second_timeout():
+	tick_delay_counter=0
+	pass # Replace with function body.
