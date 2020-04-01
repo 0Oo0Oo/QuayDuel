@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Universe.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Dodge/Player_Move.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/progress_bar/Health_Fill_SD.png" type="Texture" id=7]
 [ext_resource path="res://HealthBar.gd" type="Script" id=8]
 [ext_resource path="res://EnemyHealthBar.gd" type="Script" id=9]
+[ext_resource path="res://assets/spells/clockwork_armageddon/clock_outline.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.1882
@@ -35,16 +36,17 @@ shape = SubResource( 1 )
 scale = Vector2( 0.247655, 0.247655 )
 texture = ExtResource( 3 )
 
-[node name="enemy" type="KinematicBody2D" parent="."]
+[node name="Enemy" type="KinematicBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 293.06, 325.469 )
 collision_layer = 8
 collision_mask = 3
 script = ExtResource( 4 )
 
-[node name="Collider" type="CollisionShape2D" parent="enemy"]
+[node name="Collider" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="enemy"]
+[node name="Sprite" type="Sprite" parent="Enemy"]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 
@@ -83,6 +85,7 @@ shape = SubResource( 3 )
 [node name="Spells" type="Node" parent="."]
 
 [node name="Hud" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="PlayerHealthBar" type="TextureProgress" parent="Hud"]
 margin_left = 4.94791
@@ -120,5 +123,9 @@ margin_right = 11.2278
 margin_bottom = 55.743
 rect_scale = Vector2( 4, 4 )
 text = "U"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 540, 990 )
+texture = ExtResource( 10 )
 [connection signal="took_damage" from="Player" to="Hud/PlayerHealthBar" method="_on_Player_took_damage"]
-[connection signal="enemy_took_damage" from="enemy" to="Hud/EnemyHealthBar" method="_on_enemy_enemy_took_damage"]
+[connection signal="enemy_took_damage" from="Enemy" to="Hud/EnemyHealthBar" method="_on_enemy_enemy_took_damage"]
